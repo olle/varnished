@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import org.springframework.context.annotation.Configuration;
 
+import org.springframework.core.env.Profiles;
+
 
 /**
  * This is just a starter-class - as it should be. It's not at all enterprisey to fill it with configurations or bean
@@ -13,6 +15,11 @@ import org.springframework.context.annotation.Configuration;
  */
 @SpringBootApplication
 public class VarnishedApplication {
+
+    /**
+     * It's a good idea to declare this constant - for use in configurations.
+     */
+    public static final Profiles DEVELOPMENT = Profiles.of("localhost");
 
     public static void main(String[] args) {
 
