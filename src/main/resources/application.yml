@@ -1,0 +1,25 @@
+##
+## The defaults, applied to any profile or configuration, but may have neat
+## overrides in other profiles, or be injected from the runtime environment -
+## yeah, do that.
+##
+spring:
+  profiles:
+    # ABNTD - Always Be Nice To Developers! So we enforce a not-so-awkward,
+    # dev-first principle, meaning the default profile is an explicit local
+    # everything profile, where we can use Docker or in-memory resources to
+    # provide a setup that just-works. Great!
+    active: localhost
+##
+## Properties that ensure a smooth ride for a run-local-mode. Didn't you read
+## the rant above?
+##
+---
+spring:
+  config:
+    activate:
+      on-profile: localhost
+logging:
+  level:
+    ## Yeah, you'll thank me later!
+    com.studiomediatech.example.varnished: DEBUG
