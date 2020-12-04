@@ -1,5 +1,7 @@
 package com.studiomediatech.example.varnished.api;
 
+import com.studiomediatech.example.varnished.api.v1.ApiV1RestController;
+
 import org.springframework.hateoas.Link;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +24,8 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RestController
 public class ApiRestController {
 
-    static final Function<String, Link> API_LINK = rel -> linkTo(methodOn(ApiRestController.class).api()).withRel(rel);
+    public static final Function<String, Link> API_LINK = rel ->
+            linkTo(methodOn(ApiRestController.class).api()).withRel(rel);
 
     @GetMapping("/api")
     public Map<String, Object> api() {
