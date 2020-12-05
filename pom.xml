@@ -58,6 +58,15 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+            <!--
+              # Help a guy out here! This way, we can use a proper terminal and
+              # the Maven wrapper, or the Makefile, to get started but still
+              # have the full glory of instant reload and editable templates or
+              # resources - you'll want this. Trust me. 
+             -->
+            <addResources>true</addResources>
+        </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>

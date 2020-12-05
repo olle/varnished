@@ -19,6 +19,14 @@ spring:
   config:
     activate:
       on-profile: localhost
+  mustache:
+    cache: false
+  web:
+    resources:
+      cache:
+        period: PT0S
+  messages:
+    cache-duration: PT0S
 logging:
   level:
     ## Yeah, you'll thank me later!

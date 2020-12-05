@@ -2,12 +2,16 @@ package com.studiomediatech.example.varnished.web.config;
 
 import com.studiomediatech.example.varnished.web.RootControllerAdapter;
 import com.studiomediatech.example.varnished.web.Web;
+import com.studiomediatech.example.varnished.web.frobulator.WebFrobulator;
+import com.studiomediatech.example.varnished.web.frobulator.WebFrobulators;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import org.springframework.ui.Model;
+
+import java.util.Collection;
 
 
 /**
@@ -19,7 +23,14 @@ import org.springframework.ui.Model;
 public class WebConfig {
 
     @Bean
-    public RootControllerAdapter rootControllerAdapter() {
+    WebFrobulators webFrobulators() {
+
+        return new WebFrobulators();
+    }
+
+
+    @Bean
+    public RootControllerAdapter rootControllerAdapter(WebFrobulators webFrobulators) {
 
         return new RootControllerAdapter() {
 
@@ -27,6 +38,9 @@ public class WebConfig {
             public String index(Model model) {
 
                 model.addAttribute("name", "Roger");
+
+                Collection<WebFrobulator> frobs = webFrobulators.list();
+                model.addAttribute("frobulators", frobs);
 
                 return "index";
             }
