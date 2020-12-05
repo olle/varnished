@@ -27,6 +27,21 @@ spring:
         period: PT0S
   messages:
     cache-duration: PT0S
+  datasource:
+    url: jdbc:mariadb://localhost:3306/varnished?useUnicode=yes&characterEncoding=utf8
+    username: root
+    hikari:
+      connection-init-sql: "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;"
+management:
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  endpoint:
+    health:
+      show-details: when-authorized
+      roles: ADMIN, DEVELOPER
 logging:
   level:
     ## Yeah, you'll thank me later!
