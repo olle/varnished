@@ -1,9 +1,13 @@
 package com.studiomediatech.example.varnished.web.config;
 
+import com.studiomediatech.example.varnished.web.RootControllerAdapter;
 import com.studiomediatech.example.varnished.web.Web;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+
+import org.springframework.ui.Model;
 
 
 /**
@@ -14,5 +18,18 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(basePackageClasses = Web.class)
 public class WebConfig {
 
-    // OK
+    @Bean
+    public RootControllerAdapter rootControllerAdapter() {
+
+        return new RootControllerAdapter() {
+
+            @Override
+            public String index(Model model) {
+
+                model.addAttribute("name", "Roger");
+
+                return "index";
+            }
+        };
+    }
 }
