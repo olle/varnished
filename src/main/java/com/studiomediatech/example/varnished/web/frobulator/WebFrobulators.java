@@ -1,7 +1,7 @@
 package com.studiomediatech.example.varnished.web.frobulator;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -10,8 +10,18 @@ import java.util.List;
  */
 public class WebFrobulators {
 
+    private final FrobulatorWebAccess frobulatorWebAccess;
+
+    public WebFrobulators(FrobulatorWebAccess frobulatorWebAccess) {
+
+        this.frobulatorWebAccess = frobulatorWebAccess;
+    }
+
     public Collection<WebFrobulator> list() {
 
-        return List.of(WebFrobulator.valueOf("foo"), WebFrobulator.valueOf("bar"), WebFrobulator.valueOf("baz"));
+        return frobulatorWebAccess.listFrobulatorsForWeb()
+            .stream()
+            .map(WebFrobulator::fromFrobulator)
+            .collect(Collectors.toList());
     }
 }
