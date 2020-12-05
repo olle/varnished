@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 @SpringBootTest
-class VarnishedApplicationTests {
+class VarnishedApplicationIT {
 
     @Test
     @DisplayName("the application context starts without failures")
