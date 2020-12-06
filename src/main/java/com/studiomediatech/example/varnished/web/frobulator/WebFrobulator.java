@@ -2,8 +2,6 @@ package com.studiomediatech.example.varnished.web.frobulator;
 
 import com.studiomediatech.example.varnished.app.frobulator.Frobulator;
 
-import java.util.UUID;
-
 
 /**
  * This is an explicit frobulator, built for web. We fully decouple any notion of this being a domain model or business
@@ -33,6 +31,6 @@ public class WebFrobulator {
 
     public static WebFrobulator fromFrobulator(Frobulator frobulator) {
 
-        return new WebFrobulator(UUID.randomUUID().toString());
+        return new WebFrobulator(frobulator.getName());
     }
 }

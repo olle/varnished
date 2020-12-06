@@ -5,7 +5,6 @@ import com.studiomediatech.example.varnished.web.frobulator.FrobulatorWebAccess;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Collections;
 
 
 /**
@@ -15,9 +14,16 @@ import java.util.Collections;
 @Service
 public class FrobulatorService implements FrobulatorWebAccess {
 
+    private final FrobulatorDao dao;
+
+    public FrobulatorService(FrobulatorDao dao) {
+
+        this.dao = dao;
+    }
+
     @Override
     public Collection<Frobulator> listFrobulatorsForWeb() {
 
-        return Collections.emptyList();
+        return dao.listAllFrobulators();
     }
 }

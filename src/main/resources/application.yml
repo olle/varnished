@@ -10,6 +10,8 @@ spring:
     # everything profile, where we can use Docker or in-memory resources to
     # provide a setup that just-works. Great!
     active: localhost
+  application:
+    name: varnished
 ##
 ## Properties that ensure a smooth ride for a run-local-mode. Didn't you read
 ## the rant above?
@@ -32,6 +34,9 @@ spring:
     username: root
     hikari:
       connection-init-sql: "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;"
+  flyway:
+    schemas: ${spring.application.name}
+    baseline-on-migrate: true
 management:
   health:
     livenessstate:
