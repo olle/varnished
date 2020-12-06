@@ -24,6 +24,18 @@ public interface ApiRestControllerAdapter {
 
     default ResponseEntity<Void> addFrobulator(ApiFrobulator frobulator) {
 
+        return nothing();
+    }
+
+
+    default ResponseEntity<Void> deleteFrobulator(String identifier) {
+
+        return nothing();
+    }
+
+
+    private static ResponseEntity<Void> nothing() {
+
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

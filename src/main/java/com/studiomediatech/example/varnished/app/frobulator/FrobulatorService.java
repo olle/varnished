@@ -2,12 +2,14 @@ package com.studiomediatech.example.varnished.app.frobulator;
 
 import com.studiomediatech.example.varnished.api.frobulator.FrobulatorApiAccess;
 import com.studiomediatech.example.varnished.app.event.AddedNewFrobulatorEvent;
+import com.studiomediatech.example.varnished.app.event.DeletedFrobulatorEvent;
 import com.studiomediatech.example.varnished.event.EventEmitter;
 import com.studiomediatech.example.varnished.web.frobulator.FrobulatorWebAccess;
 
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Optional;
 
 
 /**
@@ -45,5 +47,25 @@ public class FrobulatorService implements FrobulatorWebAccess, FrobulatorApiAcce
 
         dao.saveNewFrobulator(frobulator);
         emitter.emitEvent(AddedNewFrobulatorEvent.valueOf(frobulator.getName()));
+    }
+
+
+    @Override
+    public void deleteFrobulatorById(long id) {
+
+        onDeleted(dao.deleteFrobulatorById(id));
+    }
+
+
+    @Override
+    public void deleteFrobulatorByName(String name) {
+
+        onDeleted(dao.deleteFrobulatorByName(name));
+    }
+
+
+    private void onDeleted(Optional<Frobulator> maybe) {
+
+        maybe.map(Frobulator::getName).ifPresent(name -> emitter.emitEvent(DeletedFrobulatorEvent.valueOf(name)));
     }
 }

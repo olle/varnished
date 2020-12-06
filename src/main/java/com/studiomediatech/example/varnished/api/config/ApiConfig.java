@@ -47,6 +47,13 @@ public class ApiConfig {
 
                 return apiFrobulators.addFrobulator(frobulator);
             }
+
+
+            @Override
+            public ResponseEntity<Void> deleteFrobulator(String identifier) {
+
+                return apiFrobulators.deleteFrobulator(identifier);
+            }
         };
     }
 }

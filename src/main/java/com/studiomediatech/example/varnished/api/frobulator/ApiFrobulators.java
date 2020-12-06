@@ -44,4 +44,30 @@ public class ApiFrobulators implements Logging {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
+
+    public ResponseEntity<Void> deleteFrobulator(String identifier) {
+
+        Long id = null;
+
+        try {
+            id = Long.parseLong(identifier);
+        } catch (NumberFormatException ex) {
+            // Ignored.
+        }
+
+        try {
+            if (id != null) {
+                apiAccess.deleteFrobulatorById(id);
+            } else {
+                apiAccess.deleteFrobulatorByName(identifier);
+            }
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (RuntimeException ex) {
+            logger().debug("Failed to delete frobulator", ex);
+
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
 }

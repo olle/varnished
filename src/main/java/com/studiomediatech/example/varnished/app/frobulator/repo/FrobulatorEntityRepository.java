@@ -4,6 +4,8 @@ import org.springframework.data.repository.CrudRepository;
 
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 
 /**
  * So there you are, minding your own business, when suddenly you get a CRUD repository thrown in your lap. It just
@@ -15,5 +17,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FrobulatorEntityRepository extends CrudRepository<FrobulatorEntity, Long> {
 
-    // OK
+    Optional<FrobulatorEntity> findOneByName(String name);
+
+
+    void deleteByName(String name);
 }

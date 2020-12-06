@@ -1,6 +1,7 @@
 package com.studiomediatech.example.varnished.app.frobulator;
 
 import java.util.Collection;
+import java.util.Optional;
 
 
 /**
@@ -13,4 +14,10 @@ public interface FrobulatorDao {
 
 
     void saveNewFrobulator(Frobulator frobulator);
+
+
+    Optional<Frobulator> deleteFrobulatorById(long id);
+
+
+    Optional<Frobulator> deleteFrobulatorByName(String name);
 }
