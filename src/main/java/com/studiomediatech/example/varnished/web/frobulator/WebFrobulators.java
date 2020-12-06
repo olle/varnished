@@ -10,16 +10,16 @@ import java.util.stream.Collectors;
  */
 public class WebFrobulators {
 
-    private final FrobulatorWebAccess frobulatorWebAccess;
+    private final FrobulatorWebAccess webAccess;
 
     public WebFrobulators(FrobulatorWebAccess frobulatorWebAccess) {
 
-        this.frobulatorWebAccess = frobulatorWebAccess;
+        this.webAccess = frobulatorWebAccess;
     }
 
     public Collection<WebFrobulator> list() {
 
-        return frobulatorWebAccess.listFrobulatorsForWeb()
+        return webAccess.listFrobulatorsForWeb()
             .stream()
             .map(WebFrobulator::fromFrobulator)
             .collect(Collectors.toList());

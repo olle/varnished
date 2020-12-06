@@ -21,9 +21,9 @@ import org.springframework.ui.Model;
 public class WebConfig {
 
     @Bean
-    WebFrobulators webFrobulators(FrobulatorWebAccess frobulatorWebAccess) {
+    WebFrobulators webFrobulators(FrobulatorWebAccess webAccess) {
 
-        return new WebFrobulators(frobulatorWebAccess);
+        return new WebFrobulators(webAccess);
     }
 
 
