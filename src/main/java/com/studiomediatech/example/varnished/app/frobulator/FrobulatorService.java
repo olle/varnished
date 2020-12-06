@@ -36,6 +36,13 @@ public class FrobulatorService implements FrobulatorWebAccess, FrobulatorApiAcce
 
 
     @Override
+    public Optional<Frobulator> getFrobulatorByNameForWeb(String name) {
+
+        return dao.getFrobulatorByName(name);
+    }
+
+
+    @Override
     public Collection<Frobulator> listFrobulatorsForApi() {
 
         return dao.listAllFrobulators();

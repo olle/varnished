@@ -3,6 +3,7 @@ package com.studiomediatech.example.varnished.web.config;
 import com.studiomediatech.example.varnished.web.RootControllerAdapter;
 import com.studiomediatech.example.varnished.web.Web;
 import com.studiomediatech.example.varnished.web.frobulator.FrobulatorWebAccess;
+import com.studiomediatech.example.varnished.web.frobulator.WebFrobulatorDetailsNotFoundException;
 import com.studiomediatech.example.varnished.web.frobulator.WebFrobulators;
 
 import org.springframework.context.annotation.Bean;
@@ -39,6 +40,16 @@ public class WebConfig {
                 model.addAttribute("frobulators", webFrobulators.list());
 
                 return "index";
+            }
+
+
+            @Override
+            public String frobulatorDetails(Model model, String key) {
+
+                model.addAttribute("frobulator", webFrobulators.getFrobulatorDetails(key)
+                    .orElseThrow(() -> new WebFrobulatorDetailsNotFoundException()));
+
+                return "frobulators/view";
             }
         };
     }

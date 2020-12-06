@@ -9,23 +9,31 @@ import com.studiomediatech.example.varnished.app.frobulator.Frobulator;
  */
 public class WebFrobulator {
 
-    private final String key;
+    private final String name;
 
-    public WebFrobulator(String key) {
+    private String key;
 
-        this.key = key;
+    public WebFrobulator(String name) {
+
+        this.name = name;
     }
 
     @Override
     public String toString() {
 
-        return "WebFrobulator [key=" + key + "]";
+        return "WebFrobulator [name=" + name + "]";
     }
 
 
-    public static WebFrobulator valueOf(String value) {
+    void setKey(String key) {
 
-        return new WebFrobulator(value);
+        this.key = key;
+    }
+
+
+    public String getKey() {
+
+        return key;
     }
 
 

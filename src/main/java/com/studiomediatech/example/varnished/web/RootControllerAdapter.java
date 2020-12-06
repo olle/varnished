@@ -18,6 +18,12 @@ public interface RootControllerAdapter {
     }
 
 
+    default String frobulatorDetails(Model model, String key) {
+
+        return "frobulator/details";
+    }
+
+
     static RootControllerAdapter instance() {
 
         return new RootControllerAdapter() {

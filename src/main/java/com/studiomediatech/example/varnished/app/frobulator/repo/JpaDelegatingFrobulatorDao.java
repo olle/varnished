@@ -62,4 +62,12 @@ public class JpaDelegatingFrobulatorDao implements FrobulatorDao {
 
         return maybe;
     }
+
+
+    @Transactional(readOnly = true)
+    @Override
+    public Optional<Frobulator> getFrobulatorByName(String name) {
+
+        return repo.findOneByName(name).map(FrobulatorEntity::toFrobulator);
+    }
 }

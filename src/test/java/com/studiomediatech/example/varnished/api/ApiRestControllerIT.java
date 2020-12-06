@@ -31,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class ApiRestControllerIT {
 
     @MockBean
-    FrobulatorApiAccess access;
+    FrobulatorApiAccess apiAccess;
 
     @Autowired
     MockMvc mockMvc;

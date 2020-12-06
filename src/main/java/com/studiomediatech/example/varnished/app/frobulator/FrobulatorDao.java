@@ -20,4 +20,7 @@ public interface FrobulatorDao {
 
 
     Optional<Frobulator> deleteFrobulatorByName(String name);
+
+
+    Optional<Frobulator> getFrobulatorByName(String name);
 }

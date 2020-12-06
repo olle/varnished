@@ -3,6 +3,7 @@ package com.studiomediatech.example.varnished.web.frobulator;
 import com.studiomediatech.example.varnished.app.frobulator.Frobulator;
 
 import java.util.Collection;
+import java.util.Optional;
 
 
 /**
@@ -11,4 +12,7 @@ import java.util.Collection;
 public interface FrobulatorWebAccess {
 
     Collection<Frobulator> listFrobulatorsForWeb();
+
+
+    Optional<Frobulator> getFrobulatorByNameForWeb(String name);
 }

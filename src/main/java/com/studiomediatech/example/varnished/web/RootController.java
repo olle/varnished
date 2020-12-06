@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Optional;
 
@@ -26,5 +27,13 @@ public class RootController {
     public String index(Model model) {
 
         return adapter.index(model);
+    }
+
+
+    @GetMapping("/frobulators/{key}")
+    public String frobulatorDetails(Model model,
+        @PathVariable("key") String key) {
+
+        return adapter.frobulatorDetails(model, key);
     }
 }
