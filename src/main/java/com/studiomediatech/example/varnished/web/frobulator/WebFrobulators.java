@@ -2,6 +2,8 @@ package com.studiomediatech.example.varnished.web.frobulator;
 
 import com.studiomediatech.example.varnished.app.frobulator.Frobulator;
 
+import org.springframework.ui.Model;
+
 import java.nio.charset.StandardCharsets;
 
 import java.util.ArrayList;
@@ -28,20 +30,16 @@ public class WebFrobulators {
         this.webAccess = frobulatorWebAccess;
     }
 
-    public Optional<WebFrobulatorDetails> getFrobulatorDetails(String key) {
+    public String index(Model model) {
 
-        String name = index.get(key);
+        model.addAttribute("name", "Roger");
+        model.addAttribute("frobulators", list());
 
-        if (name == null) {
-            return Optional.empty();
-        }
-
-        return webAccess.getFrobulatorByNameForWeb(name)
-            .map(WebFrobulatorDetails::fromFrobulator);
+        return "index";
     }
 
 
-    public Collection<WebFrobulator> list() {
+    private Collection<WebFrobulator> list() {
 
         Collection<Frobulator> frobulators = webAccess.listFrobulatorsForWeb();
 
@@ -73,5 +71,27 @@ public class WebFrobulators {
 
         return UUID.nameUUIDFromBytes(("secret-" + frobulator.getName()).getBytes(StandardCharsets.UTF_8))
             .toString();
+    }
+
+
+    public String frobulatorDetails(Model model, String key) {
+
+        model.addAttribute("frobulator", getFrobulatorDetails(key)
+                .orElseThrow(() -> new WebFrobulatorDetailsNotFoundException()));
+
+        return "frobulators/view";
+    }
+
+
+    private Optional<WebFrobulatorDetails> getFrobulatorDetails(String key) {
+
+        String name = index.get(key);
+
+        if (name == null) {
+            return Optional.empty();
+        }
+
+        return webAccess.getFrobulatorByNameForWeb(name)
+            .map(WebFrobulatorDetails::fromFrobulator);
     }
 }
