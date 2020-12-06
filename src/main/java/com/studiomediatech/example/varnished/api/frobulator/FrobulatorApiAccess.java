@@ -8,4 +8,7 @@ import java.util.Collection;
 public interface FrobulatorApiAccess {
 
     Collection<Frobulator> listFrobulatorsForApi();
+
+
+    void addFrobulatorFromApi(Frobulator frobulator);
 }

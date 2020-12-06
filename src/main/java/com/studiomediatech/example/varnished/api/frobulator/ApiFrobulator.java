@@ -20,4 +20,10 @@ public class ApiFrobulator {
 
         return target;
     }
+
+
+    public Frobulator toFrobulator() {
+
+        return new Frobulator(name);
+    }
 }

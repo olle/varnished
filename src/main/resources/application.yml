@@ -37,12 +37,16 @@ spring:
   flyway:
     schemas: ${spring.application.name}
     baseline-on-migrate: true
+  task:
+    execution:
+      pool:
+        max-size: 11
+  jmx:
+    enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
 management:
-  health:
-    livenessstate:
-      enabled: true
-    readinessstate:
-      enabled: true
   endpoint:
     health:
       show-details: when-authorized

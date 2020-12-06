@@ -43,4 +43,13 @@ class FrobulatorEntity extends AbstractPersistable<Long> {
 
         return new Frobulator(name);
     }
+
+
+    public static FrobulatorEntity valueOf(Frobulator frobulator) {
+
+        FrobulatorEntity target = new FrobulatorEntity();
+        target.setName(frobulator.getName());
+
+        return target;
+    }
 }

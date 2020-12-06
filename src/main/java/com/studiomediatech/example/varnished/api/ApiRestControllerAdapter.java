@@ -2,6 +2,9 @@ package com.studiomediatech.example.varnished.api;
 
 import com.studiomediatech.example.varnished.api.frobulator.ApiFrobulator;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
 import java.util.Collection;
 import java.util.Collections;
 
@@ -16,6 +19,12 @@ public interface ApiRestControllerAdapter {
     default Collection<ApiFrobulator> frobulators() {
 
         return Collections.emptyList();
+    }
+
+
+    default ResponseEntity<Void> addFrobulator(ApiFrobulator frobulator) {
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 

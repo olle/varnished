@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import org.springframework.http.ResponseEntity;
+
 import java.util.Collection;
 
 
@@ -37,6 +39,13 @@ public class ApiConfig {
             public Collection<ApiFrobulator> frobulators() {
 
                 return apiFrobulators.listFrobulators();
+            }
+
+
+            @Override
+            public ResponseEntity<Void> addFrobulator(ApiFrobulator frobulator) {
+
+                return apiFrobulators.addFrobulator(frobulator);
             }
         };
     }

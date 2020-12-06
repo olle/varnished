@@ -10,4 +10,7 @@ import java.util.Collection;
 public interface FrobulatorDao {
 
     Collection<Frobulator> listAllFrobulators();
+
+
+    void saveNewFrobulator(Frobulator frobulator);
 }

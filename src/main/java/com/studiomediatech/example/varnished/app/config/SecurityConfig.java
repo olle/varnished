@@ -8,6 +8,7 @@ import org.springframework.core.env.Environment;
 
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 
@@ -37,6 +38,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests().antMatchers("/api/**").hasAnyRole("DEVELOPER");
         http.authorizeRequests().antMatchers("/**").hasAnyRole("USER", "ADMIN");
+
         http.formLogin().permitAll();
+    }
+
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+
+        // FOR TOGGLING! // web.ignoring().antMatchers("/api/**").anyRequest();
     }
 }

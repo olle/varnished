@@ -4,7 +4,12 @@ import com.studiomediatech.example.varnished.api.frobulator.ApiFrobulator;
 
 import org.springframework.hateoas.Link;
 
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
@@ -25,6 +30,8 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
  */
 @RestController
 public class ApiRestController {
+
+    private static final String FROBULATORS_PATH = "/api/v1/frobulators";
 
     public static final Function<String, Link> API = rel ->
             linkTo(methodOn(ApiRestController.class).api()).withRel(rel);
@@ -57,9 +64,16 @@ public class ApiRestController {
     }
 
 
-    @GetMapping("/api/v1/frobulators")
+    @GetMapping(FROBULATORS_PATH)
     public Collection<ApiFrobulator> frobulators() {
 
         return adapter.frobulators();
+    }
+
+
+    @PostMapping(path = FROBULATORS_PATH, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> addFrobulator(@RequestBody ApiFrobulator frobulator) {
+
+        return adapter.addFrobulator(frobulator);
     }
 }
