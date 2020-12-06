@@ -1,5 +1,6 @@
 package com.studiomediatech.example.varnished.web.config;
 
+import com.studiomediatech.example.varnished.web.FrobulatorControllerAdapter;
 import com.studiomediatech.example.varnished.web.RootControllerAdapter;
 import com.studiomediatech.example.varnished.web.Web;
 import com.studiomediatech.example.varnished.web.frobulator.FrobulatorWebAccess;
@@ -37,7 +38,14 @@ public class WebConfig {
 
                 return webFrobulators.index(model);
             }
+        };
+    }
 
+
+    @Bean
+    public FrobulatorControllerAdapter frobulatorControllerAdapter(WebFrobulators webFrobulators) {
+
+        return new FrobulatorControllerAdapter() {
 
             @Override
             public String frobulatorDetails(Model model, String key) {
