@@ -45,3 +45,13 @@ html,
 body {
   height: 100%;
 }
+
+/* ICONS -------------------------------------------------------------------- */
+
+a > .icon-tabler {
+  vertical-align: middle;
+}
+
+.icon-tabler {
+  stroke-width: 2.3;
+}
