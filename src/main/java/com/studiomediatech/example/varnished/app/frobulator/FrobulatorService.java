@@ -52,6 +52,19 @@ public class FrobulatorService implements FrobulatorWebAccess, FrobulatorApiAcce
     @Override
     public void addFrobulatorFromApi(Frobulator frobulator) {
 
+        addFrobulator(frobulator);
+    }
+
+
+    @Override
+    public void addFrobulatorFromWeb(Frobulator frobulator) {
+
+        addFrobulator(frobulator);
+    }
+
+
+    private void addFrobulator(Frobulator frobulator) {
+
         dao.saveNewFrobulator(frobulator);
         emitter.emitEvent(AddedNewFrobulatorEvent.valueOf(frobulator.getName()));
     }

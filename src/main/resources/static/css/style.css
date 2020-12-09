@@ -1,3 +1,5 @@
+/* SETUP/RESET .------------------------------------------------------------- */
+
 html {
   box-sizing: border-box;
 }
@@ -9,7 +11,7 @@ html {
 }
 
 :root {
-  --bg: #faf9f6;
+  --bg: #fafafa;
   --bg-hover: rgba(123, 154, 255, 0.07);
   --bg-even: hsla(226, 10%, 50%, 0.07);
   --fg: rgba(0, 0, 0, 0.8);
@@ -24,6 +26,7 @@ html {
   --bold: 600;
   --thin: 400;
   --bold-letter-spacing: 0.1rem;
+  --radius: 4px;
 }
 
 body {

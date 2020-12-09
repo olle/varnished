@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+  {{> _head}}
+</head>
+<body>
+  <main>
+    <h2>Create new Frobulator</h2>
+    <form method="post" action="/frobulators" name="frobulator">
+      {{#_csrf}}<input type="hidden" name="{{parameterName}}" value="{{token}}"/>{{/_csrf}}
+      <fieldset>
+        <label for="name">Name</label>
+        <input name="name" id="name" />
+      </fieldset>
+      <fieldset>
+        <input class="button-primary" type="submit" value="Add Frobulator" />
+      </fieldset>
+    </form>
+  </main>
+  {{> _foot}}
+</body>
+</html>

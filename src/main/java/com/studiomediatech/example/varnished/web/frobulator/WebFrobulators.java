@@ -1,8 +1,13 @@
 package com.studiomediatech.example.varnished.web.frobulator;
 
 import com.studiomediatech.example.varnished.app.frobulator.Frobulator;
+import com.studiomediatech.example.varnished.utils.Logging;
 
 import org.springframework.ui.Model;
+
+import org.springframework.validation.BindingResult;
+
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.nio.charset.StandardCharsets;
 
@@ -19,7 +24,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Adapter (AGAIN!) to any possible access to a list of frobulators, but we are responsible for transforming any core
  * models or domain objects into pretty little web-frobulator instances.
  */
-public class WebFrobulators {
+public class WebFrobulators implements Logging {
 
     private final FrobulatorWebAccess webAccess;
 
@@ -93,5 +98,20 @@ public class WebFrobulators {
 
         return webAccess.getFrobulatorByNameForWeb(name)
             .map(WebFrobulatorDetails::fromFrobulator);
+    }
+
+
+    public String createFrobulator(Model model, FrobulatorForm form, BindingResult errors,
+        RedirectAttributes redirect) {
+
+        if (errors.hasErrors()) {
+            logger().error("Invalid frobulator form {}", errors);
+
+            return "frobulators/new";
+        }
+
+        webAccess.addFrobulatorFromWeb(form.toFrobulator());
+
+        return "redirect:/";
     }
 }

@@ -3,6 +3,7 @@ package com.studiomediatech.example.varnished.web.config;
 import com.studiomediatech.example.varnished.web.FrobulatorControllerAdapter;
 import com.studiomediatech.example.varnished.web.RootControllerAdapter;
 import com.studiomediatech.example.varnished.web.Web;
+import com.studiomediatech.example.varnished.web.frobulator.FrobulatorForm;
 import com.studiomediatech.example.varnished.web.frobulator.FrobulatorWebAccess;
 import com.studiomediatech.example.varnished.web.frobulator.WebFrobulators;
 
@@ -11,6 +12,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import org.springframework.ui.Model;
+
+import org.springframework.validation.BindingResult;
+
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 /**
@@ -51,6 +56,14 @@ public class WebConfig {
             public String frobulatorDetails(Model model, String key) {
 
                 return webFrobulators.frobulatorDetails(model, key);
+            }
+
+
+            @Override
+            public String createFrobulator(Model model, FrobulatorForm form, BindingResult errors,
+                RedirectAttributes redirect) {
+
+                return webFrobulators.createFrobulator(model, form, errors, redirect);
             }
         };
     }

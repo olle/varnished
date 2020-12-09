@@ -12,6 +12,16 @@ spring:
     active: localhost
   application:
     name: varnished
+  mustache:
+    expose-session-attributes: true
+    expose-spring-macro-helpers: true
+    expose-request-attributes: true
+  jpa:
+    ## One can argue that... NAHHH, shut up and sit down in the boat. The
+    ## main purpose of not opening a session in view, is that real enterprise
+    ## solutions, should be able to tell _how_ and _where_ there are session
+    ## and transaction boundaries. Nough said!
+    open-in-view: false
 ##
 ## Properties that ensure a smooth ride for a run-local-mode. Didn't you read
 ## the rant above?

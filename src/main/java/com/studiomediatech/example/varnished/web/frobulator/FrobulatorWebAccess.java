@@ -15,4 +15,7 @@ public interface FrobulatorWebAccess {
 
 
     Optional<Frobulator> getFrobulatorByNameForWeb(String name);
+
+
+    void addFrobulatorFromWeb(Frobulator frobulator);
 }
