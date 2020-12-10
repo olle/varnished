@@ -71,14 +71,27 @@ public class FrobulatorService implements FrobulatorWebAccess, FrobulatorApiAcce
 
 
     @Override
-    public void deleteFrobulatorById(long id) {
+    public void deleteFrobulatorFromApiById(long id) {
 
         onDeleted(dao.deleteFrobulatorById(id));
     }
 
 
     @Override
-    public void deleteFrobulatorByName(String name) {
+    public void deleteFrobulatorFromApiByName(String name) {
+
+        deleteByName(name);
+    }
+
+
+    @Override
+    public void deleteFrobulatorFromWebByName(String name) {
+
+        deleteByName(name);
+    }
+
+
+    private void deleteByName(String name) {
 
         onDeleted(dao.deleteFrobulatorByName(name));
     }

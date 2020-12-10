@@ -12,6 +12,10 @@ spring:
     active: localhost
   application:
     name: varnished
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
   mustache:
     expose-session-attributes: true
     expose-spring-macro-helpers: true
@@ -22,6 +26,11 @@ spring:
     ## solutions, should be able to tell _how_ and _where_ there are session
     ## and transaction boundaries. Nough said!
     open-in-view: false
+  datasource:
+    hikari:
+      connection-timeout: 30000
+      idle-timeout: 200000
+      max-lifetime: 600000
 ##
 ## Properties that ensure a smooth ride for a run-local-mode. Didn't you read
 ## the rant above?

@@ -18,6 +18,12 @@ public interface FrobulatorControllerAdapter {
     }
 
 
+    default String deleteFrobulator(Model model, String key) {
+
+        return "redirect:/";
+    }
+
+
     default String newFrobulator(Model model) {
 
         return "frobulators/new";

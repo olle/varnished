@@ -58,9 +58,9 @@ public class ApiFrobulators implements Logging {
 
         try {
             if (id != null) {
-                apiAccess.deleteFrobulatorById(id);
+                apiAccess.deleteFrobulatorFromApiById(id);
             } else {
-                apiAccess.deleteFrobulatorByName(identifier);
+                apiAccess.deleteFrobulatorFromApiByName(identifier);
             }
 
             return new ResponseEntity<>(HttpStatus.OK);

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 
 import org.springframework.validation.BindingResult;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,6 +44,14 @@ public class FrobulatorController {
         @PathVariable("key") String key) {
 
         return adapter.frobulatorDetails(model, key);
+    }
+
+
+    @DeleteMapping("/frobulators/{key}")
+    public String deleteFrobulator(Model model,
+        @PathVariable("key") String key) {
+
+        return adapter.deleteFrobulator(model, key);
     }
 
 

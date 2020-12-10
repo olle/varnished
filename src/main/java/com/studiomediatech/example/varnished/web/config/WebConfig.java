@@ -60,6 +60,13 @@ public class WebConfig {
 
 
             @Override
+            public String deleteFrobulator(Model model, String key) {
+
+                return webFrobulators.deleteFrobulator(model, key);
+            }
+
+
+            @Override
             public String createFrobulator(Model model, FrobulatorForm form, BindingResult errors,
                 RedirectAttributes redirect) {
 

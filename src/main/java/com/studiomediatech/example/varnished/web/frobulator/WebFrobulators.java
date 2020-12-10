@@ -114,4 +114,13 @@ public class WebFrobulators implements Logging {
 
         return "redirect:/";
     }
+
+
+    public String deleteFrobulator(Model model, String key) {
+
+        Optional.ofNullable(index.get(key))
+            .ifPresent(webAccess::deleteFrobulatorFromWebByName);
+
+        return "redirect:/";
+    }
 }

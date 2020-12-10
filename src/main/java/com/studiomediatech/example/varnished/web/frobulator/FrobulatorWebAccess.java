@@ -18,4 +18,7 @@ public interface FrobulatorWebAccess {
 
 
     void addFrobulatorFromWeb(Frobulator frobulator);
+
+
+    void deleteFrobulatorFromWebByName(String name);
 }

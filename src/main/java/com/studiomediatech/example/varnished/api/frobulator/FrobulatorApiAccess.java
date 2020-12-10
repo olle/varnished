@@ -13,8 +13,8 @@ public interface FrobulatorApiAccess {
     void addFrobulatorFromApi(Frobulator frobulator);
 
 
-    void deleteFrobulatorById(long id);
+    void deleteFrobulatorFromApiById(long id);
 
 
-    void deleteFrobulatorByName(String name);
+    void deleteFrobulatorFromApiByName(String name);
 }

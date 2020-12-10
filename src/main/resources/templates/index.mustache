@@ -4,20 +4,27 @@
   {{> _head}}
 </head>
 <body>
-  <main>
+  <main class="container">
     <h1>Hello {{name}}!</h1>
     <h2>Frobulators of the day</h2>
-    <ol>
+    <ol class="frobulator-list">
       {{#frobulators}}
       <li>
-        <a href="/frobulators/{{key}}">{{.}}</a>
+        <span class="frobulator-entry">
+          <a href="/frobulators/{{key}}">{{.}}</a>
+          <form method="post" action="/frobulators/{{key}}">
+            {{#_csrf}}<input type="hidden" name="{{parameterName}}" value="{{token}}"/>{{/_csrf}}
+            <input type="hidden" name="_method" value="delete" />
+            <a onclick="this.closest('form').submit();" title="Delete">{{> icons/_trash}}</a>
+          </form>
+        </span>
       </li>
       {{/frobulators}}
     </ol>
     {{^frobulators}}
     <p><em>No frobulators, sorry!</em></p>
     {{/frobulators}}
-    <a href="/frobulators/new">
+    <a href="/frobulators/new" role="button">
       {{> icons/_add}}
       Create new Frobulator
     </a>
