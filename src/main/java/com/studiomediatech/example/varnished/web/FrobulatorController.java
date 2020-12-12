@@ -32,6 +32,13 @@ public class FrobulatorController {
         this.adapter = adapter.orElseGet(FrobulatorControllerAdapter::instance);
     }
 
+    @GetMapping("/frobulators")
+    public String listFrobulators(Model model) {
+
+        return adapter.listFrobulators(model);
+    }
+
+
     @GetMapping("/frobulators/new")
     public String newFrobulator(Model model) {
 

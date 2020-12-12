@@ -6,6 +6,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -19,6 +20,9 @@ class FrobulatorEntity extends AbstractPersistable<Long> {
 
     @Column(length = 64, nullable = false, name = "name")
     private String name;
+
+    @ManyToOne
+    private CategoryEntity category;
 
     public String getName() {
 

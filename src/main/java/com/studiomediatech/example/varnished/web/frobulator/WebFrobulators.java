@@ -35,12 +35,11 @@ public class WebFrobulators implements Logging {
         this.webAccess = frobulatorWebAccess;
     }
 
-    public String index(Model model) {
+    public String listFrobulators(Model model) {
 
-        model.addAttribute("name", "Roger");
         model.addAttribute("frobulators", list());
 
-        return "index";
+        return "frobulators/list";
     }
 
 

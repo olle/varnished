@@ -38,11 +38,7 @@ public class WebConfig {
 
         return new RootControllerAdapter() {
 
-            @Override
-            public String index(Model model) {
-
-                return webFrobulators.index(model);
-            }
+            // OK
         };
     }
 
@@ -51,6 +47,13 @@ public class WebConfig {
     public FrobulatorControllerAdapter frobulatorControllerAdapter(WebFrobulators webFrobulators) {
 
         return new FrobulatorControllerAdapter() {
+
+            @Override
+            public String listFrobulators(Model model) {
+
+                return webFrobulators.listFrobulators(model);
+            }
+
 
             @Override
             public String frobulatorDetails(Model model, String key) {

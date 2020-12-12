@@ -12,6 +12,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public interface FrobulatorControllerAdapter {
 
 
+    default String listFrobulators(Model model) {
+
+        return "frobulators/list";
+    }
+
+
     default String frobulatorDetails(Model model, String key) {
 
         return "frobulators/details";
