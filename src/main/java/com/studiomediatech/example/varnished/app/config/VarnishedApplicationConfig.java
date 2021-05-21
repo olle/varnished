@@ -2,7 +2,7 @@ package com.studiomediatech.example.varnished.app.config;
 
 import com.studiomediatech.example.varnished.api.config.ApiConfig;
 import com.studiomediatech.example.varnished.event.EventEmitter;
-import com.studiomediatech.example.varnished.web.config.WebConfig;
+import com.studiomediatech.example.varnished.web.WebConfig;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 

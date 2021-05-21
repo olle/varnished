@@ -5,12 +5,19 @@
 </head>
 <body>
   <main class="container">
+    <a href="/">
+      {{> icons/_home}}
+      Home
+    </a>
     <h1>Current Frobulators</h1>
     <ol class="frobulator-list">
       {{#frobulators}}
       <li>
         <span class="frobulator-entry">
           <a href="/frobulators/{{key}}">{{.}}</a>
+          <a href="/frobulators/{{key}}/edit" title="Edit">
+            {{> icons/_edit}}
+          </a>
           <form method="post" action="/frobulators/{{key}}">
             {{#_csrf}}<input type="hidden" name="{{parameterName}}" value="{{token}}"/>{{/_csrf}}
             <input type="hidden" name="_method" value="delete" />

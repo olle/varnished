@@ -1,16 +1,6 @@
 package com.studiomediatech.example.varnished.web.frobulator;
 
-import com.studiomediatech.example.varnished.app.frobulator.Frobulator;
-import com.studiomediatech.example.varnished.utils.Logging;
-
-import org.springframework.ui.Model;
-
-import org.springframework.validation.BindingResult;
-
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import java.nio.charset.StandardCharsets;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -18,11 +8,20 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.BiConsumer;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 
+import org.springframework.validation.BindingResult;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.studiomediatech.example.varnished.app.frobulator.Frobulator;
+import com.studiomediatech.example.varnished.utils.Logging;
 
 /**
- * Adapter (AGAIN!) to any possible access to a list of frobulators, but we are responsible for transforming any core
- * models or domain objects into pretty little web-frobulator instances.
+ * Adapter (AGAIN!) to any possible access to a list of frobulators, but we are
+ * responsible for transforming any core models or domain objects into pretty
+ * little web-frobulator instances.
  */
 public class WebFrobulators implements Logging {
 
@@ -35,13 +34,12 @@ public class WebFrobulators implements Logging {
         this.webAccess = frobulatorWebAccess;
     }
 
-    public String listFrobulators(Model model) {
+    public String listFrobulators(BiConsumer<String, Object> sink) {
 
-        model.addAttribute("frobulators", list());
+        sink.accept("frobulators", list());
 
         return "frobulators/list";
     }
-
 
     private Collection<WebFrobulator> list() {
 
@@ -61,7 +59,6 @@ public class WebFrobulators implements Logging {
         return results;
     }
 
-
     private String mapToKey(Frobulator frobulator) {
 
         String key = calculateKey(frobulator);
@@ -70,22 +67,18 @@ public class WebFrobulators implements Logging {
         return key;
     }
 
-
     private static String calculateKey(Frobulator frobulator) {
 
-        return UUID.nameUUIDFromBytes(("secret-" + frobulator.getName()).getBytes(StandardCharsets.UTF_8))
-            .toString();
+        return UUID.nameUUIDFromBytes(("secret-" + frobulator.getName()).getBytes(StandardCharsets.UTF_8)).toString();
     }
 
+    public String frobulatorDetails(BiConsumer<String, Object> sink, String key) {
 
-    public String frobulatorDetails(Model model, String key) {
-
-        model.addAttribute("frobulator", getFrobulatorDetails(key)
-                .orElseThrow(() -> new WebFrobulatorDetailsNotFoundException()));
+        sink.accept("frobulator",
+                getFrobulatorDetails(key).orElseThrow(() -> new WebFrobulatorDetailsNotFoundException()));
 
         return "frobulators/view";
     }
-
 
     private Optional<WebFrobulatorDetails> getFrobulatorDetails(String key) {
 
@@ -95,15 +88,15 @@ public class WebFrobulators implements Logging {
             return Optional.empty();
         }
 
-        return webAccess.getFrobulatorByNameForWeb(name)
-            .map(WebFrobulatorDetails::fromFrobulator);
+        return webAccess.getFrobulatorByNameForWeb(name).map(WebFrobulatorDetails::fromFrobulator);
     }
 
+    public String createFrobulator(BiConsumer<String, Object> sink, NewFrobulatorForm form, BindingResult errors,
+            RedirectAttributes redirect) {
 
-    public String createFrobulator(Model model, FrobulatorForm form, BindingResult errors,
-        RedirectAttributes redirect) {
+        Supplier<Boolean> failed = () -> errors.hasErrors();
 
-        if (errors.hasErrors()) {
+        if (failed.get()) {
             logger().error("Invalid frobulator form {}", errors);
 
             return "frobulators/new";
@@ -111,15 +104,36 @@ public class WebFrobulators implements Logging {
 
         webAccess.addFrobulatorFromWeb(form.toFrobulator());
 
-        return "redirect:/";
+        return "redirect:/frobulators";
     }
 
+    public String editFrobulator(BiConsumer<String, Object> sink, String key) {
 
-    public String deleteFrobulator(Model model, String key) {
+        logger().debug("Resolving frobulator for editing {}", key);
 
-        Optional.ofNullable(index.get(key))
-            .ifPresent(webAccess::deleteFrobulatorFromWebByName);
+        sink.accept("frobulator",
+                getEditFrobulatorForm(key).orElseThrow(() -> new WebFrobulatorDetailsNotFoundException()));
 
-        return "redirect:/";
+        return "frobulators/edit";
+    }
+
+    private Optional<EditFrobulatorForm> getEditFrobulatorForm(String key) {
+
+        String name = index.get(key);
+
+        if (name == null) {
+            return Optional.empty();
+        }
+
+        logger().debug("Found frobulator name to lookup {}", name);
+
+        return webAccess.getFrobulatorByNameForWeb(name).map(EditFrobulatorForm::fromFrobulator);
+    }
+
+    public String deleteFrobulator(BiConsumer<String, Object> sink, String key) {
+
+        Optional.ofNullable(index.get(key)).ifPresent(webAccess::deleteFrobulatorFromWebByName);
+
+        return "redirect:/frobulators";
     }
 }

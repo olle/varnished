@@ -5,15 +5,15 @@ package com.studiomediatech.example.varnished.app.frobulator;
  */
 public class Frobulator {
 
-    private final String name;
+	private final String name;
 
-    public Frobulator(String name) {
+	public Frobulator(String name) {
 
-        this.name = name;
-    }
+		this.name = name;
+	}
 
-    public String getName() {
+	public String getName() {
 
-        return name;
-    }
+		return name;
+	}
 }

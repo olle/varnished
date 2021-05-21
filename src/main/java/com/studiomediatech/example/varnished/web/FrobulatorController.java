@@ -1,23 +1,19 @@
 package com.studiomediatech.example.varnished.web;
 
-import com.studiomediatech.example.varnished.web.frobulator.FrobulatorForm;
+import java.util.Optional;
+
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
-
 import org.springframework.ui.Model;
-
 import org.springframework.validation.BindingResult;
-
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.Optional;
-
-import javax.validation.Valid;
-
+import com.studiomediatech.example.varnished.web.frobulator.NewFrobulatorForm;
 
 /**
  * Especially for handling those frobulator needs.
@@ -25,47 +21,47 @@ import javax.validation.Valid;
 @Controller
 public class FrobulatorController {
 
-    private final FrobulatorControllerAdapter adapter;
+    private final WebFacade webFacade;
 
-    public FrobulatorController(Optional<FrobulatorControllerAdapter> adapter) {
+    public FrobulatorController(Optional<WebFacade> adapter) {
 
-        this.adapter = adapter.orElseGet(FrobulatorControllerAdapter::instance);
+        this.webFacade = adapter.orElseGet(WebFacade::empty);
     }
 
     @GetMapping("/frobulators")
     public String listFrobulators(Model model) {
 
-        return adapter.listFrobulators(model);
+        return webFacade.listFrobulators(model::addAttribute);
     }
-
 
     @GetMapping("/frobulators/new")
     public String newFrobulator(Model model) {
 
-        return adapter.newFrobulator(model);
+        return webFacade.newFrobulator(model::addAttribute);
     }
-
 
     @GetMapping("/frobulators/{key}")
-    public String frobulatorDetails(Model model,
-        @PathVariable("key") String key) {
+    public String frobulatorDetails(Model model, @PathVariable("key") String key) {
 
-        return adapter.frobulatorDetails(model, key);
+        return webFacade.frobulatorDetails(model::addAttribute, key);
     }
 
+    @GetMapping("/frobulators/{key}/edit")
+    public String editFrobulator(Model model, @PathVariable("key") String key) {
+
+        return webFacade.editFrobulator(model::addAttribute, key);
+    }
 
     @DeleteMapping("/frobulators/{key}")
-    public String deleteFrobulator(Model model,
-        @PathVariable("key") String key) {
+    public String deleteFrobulator(Model model, @PathVariable("key") String key) {
 
-        return adapter.deleteFrobulator(model, key);
+        return webFacade.deleteFrobulator(model::addAttribute, key);
     }
-
 
     @PostMapping("/frobulators")
     public String createFrobulator(Model model, //
-        @Valid FrobulatorForm form, BindingResult errors, RedirectAttributes redirect) {
+            @Valid NewFrobulatorForm form, BindingResult errors, RedirectAttributes redirect) {
 
-        return adapter.createFrobulator(model, form, errors, redirect);
+        return webFacade.createFrobulator(model::addAttribute, form, errors, redirect);
     }
 }

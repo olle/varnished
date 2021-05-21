@@ -8,23 +8,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Optional;
 
-
 /**
  * Serving those hungry hungry hippos!
  */
 @Controller
 public class RootController {
 
-    private final RootControllerAdapter adapter;
+    private final WebFacade webFacade;
 
-    public RootController(Optional<RootControllerAdapter> maybe) {
+    public RootController(Optional<WebFacade> maybe) {
 
-        adapter = maybe.orElseGet(RootControllerAdapter::instance);
+        webFacade = maybe.orElseGet(WebFacade::empty);
     }
 
     @GetMapping("/")
     public String index(Model model) {
 
-        return adapter.index(model);
+        return webFacade.rootControllerIndexPage(model::addAttribute);
     }
 }
