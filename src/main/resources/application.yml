@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: varnished
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+  mustache:
+    expose-session-attributes: true
+    expose-spring-macro-helpers: true
+    expose-request-attributes: true
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  mustache:
+    cache: false
+  web:
+    resources:
+      cache:
+        period: PT0S
+  messages:
+    cache-duration: PT0S
