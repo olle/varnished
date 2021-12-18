@@ -1,4 +1,4 @@
-package example.varnished.app.config;
+package example.varnished.infra.config;
 
 import org.springframework.context.annotation.Configuration;
 
