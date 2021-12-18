@@ -5,10 +5,13 @@ spring:
     hiddenmethod:
       filter:
         enabled: true
+  messages:
+    fallback-to-system-locale: false
   mustache:
-    expose-session-attributes: true
-    expose-spring-macro-helpers: true
-    expose-request-attributes: true
+    suffix: .mustache
+    #expose-session-attributes: true
+    #expose-spring-macro-helpers: true
+    #expose-request-attributes: true
 ---
 spring:
   config:

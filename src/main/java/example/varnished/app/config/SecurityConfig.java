@@ -1,14 +1,12 @@
 package example.varnished.app.config;
 
-import example.varnished.app.VarninshedApp;
-
 import org.springframework.context.annotation.Configuration;
 
 import org.springframework.core.env.Environment;
+import org.springframework.core.env.Profiles;
 
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 
@@ -25,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        if (env.acceptsProfiles(VarninshedApp.DEV_PROFILE)) {
+        if (env.acceptsProfiles(Profiles.of("dev"))) {
             auth.inMemoryAuthentication().withUser("dev").password("{noop}dev").roles("DEVELOPER");
         }
     }
@@ -36,12 +34,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests().antMatchers("/**").hasAnyRole("DEVELOPER");
         http.formLogin().permitAll();
-    }
-
-
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-
-        // FOR TOGGLING! // web.ignoring().antMatchers("/api/**").anyRequest();
     }
 }
