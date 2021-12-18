@@ -9,3 +9,7 @@ start:
 .PHONY: test
 test:
 	$(MVN) clean verify
+
+.PHONY: image
+image:
+	$(MVN) spring-boot:build-image
