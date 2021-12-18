@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 
+import org.springframework.security.test.context.support.WithMockUser;
+
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -23,7 +25,22 @@ class WebSecurityConfigIT {
     @Test
     void ensureUnauthenticatedAreRedirectedToLogin() throws Exception {
 
-        mockMvc.perform(get("/"))
-            .andExpect(status().is3xxRedirection());
+        mockMvc.perform(get("/")).andExpect(status().is3xxRedirection());
+    }
+
+
+    @Test
+    @WithMockUser(roles = "OTHER")
+    void ensureOthersAreForbidden() throws Exception {
+
+        mockMvc.perform(get("/")).andExpect(status().isForbidden());
+    }
+
+
+    @Test
+    @WithMockUser(roles = "DEVELOPER")
+    void ensureDevelopersHasAccess() throws Exception {
+
+        mockMvc.perform(get("/")).andExpect(status().is2xxSuccessful());
     }
 }
