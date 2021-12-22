@@ -1,5 +1,8 @@
 package example.varnished.app.config;
 
+import example.varnished.infra.config.SecurityConfig;
+import example.varnished.infra.config.WebConfig;
+
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +14,22 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
-import example.varnished.infra.config.SecurityConfig;
-import example.varnished.infra.config.WebConfig;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
+/**
+ * Using custom context configuration here, allows us to avoid running a heavier
+ * application context. Since we only really want to assert the role based
+ * access rules, it's well and enough to run controllers, with default (empty)
+ * web adapters, and the security configuration.
+ *
+ * <p>
+ * Being dependent on {@code SpringBootTest} setups, and all other layers or
+ * modules in the application, is too time and resource intensive for the value
+ * proposition here - testing simple access.
+ * </p>
+ */
 @WebMvcTest
 @ContextConfiguration(classes = { WebConfig.class, SecurityConfig.class })
 class WebSecurityConfigIT {
