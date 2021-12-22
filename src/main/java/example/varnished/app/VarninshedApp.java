@@ -1,5 +1,6 @@
 package example.varnished.app;
 
+import example.varnished.infra.config.AdapterConfig;
 import example.varnished.infra.config.SecurityConfig;
 import example.varnished.infra.config.WebConfig;
 
@@ -19,7 +20,7 @@ public class VarninshedApp {
     }
 
     @Configuration
-    @Import({ WebConfig.class, SecurityConfig.class })
+    @Import({ WebConfig.class, SecurityConfig.class, AdapterConfig.class })
     public static class Bootstrap {
 
         // OK

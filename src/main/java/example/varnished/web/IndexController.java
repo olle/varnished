@@ -27,20 +27,3 @@ public class IndexController {
         return "index";
     }
 }
-
-interface IndexWebAdapter {
-
-    static IndexWebAdapter empty() {
-
-        return new IndexWebAdapter() {
-
-            // OK
-        };
-    }
-
-
-    default String fetchGreeting() {
-
-        return "World";
-    }
-}
