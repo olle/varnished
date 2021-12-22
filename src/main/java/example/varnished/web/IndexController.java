@@ -10,11 +10,11 @@ import java.util.Optional;
 
 
 @Controller
-public class Index {
+public class IndexController {
 
     private final IndexWebAdapter adapter;
 
-    public Index(Optional<IndexWebAdapter> adapter) {
+    public IndexController(Optional<IndexWebAdapter> adapter) {
 
         this.adapter = adapter.orElseGet(IndexWebAdapter::empty);
     }
