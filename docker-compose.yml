@@ -13,16 +13,28 @@ services:
   #       ## Development only!
   #       - MYSQL_ALLOW_EMPTY_PASSWORD=true
   #       - MYSQL_DATABASE=varnished
-  'postgres':
+  'db-alpha':
     image: postgres:15
     restart: always
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     ports:
-      - '5432:5432'
+      - '5433:5432'
     volumes: 
-      - db:/var/lib/postgresql/data
+      - db-alpha:/var/lib/postgresql/data
+  'db-omega':
+    image: postgres:15
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5444:5432'
+    volumes: 
+      - db-omega:/var/lib/postgresql/data
 volumes:
-  db:
-    driver: local      
+  db-alpha:
+    driver: local
+  db-omega:
+    driver: local
