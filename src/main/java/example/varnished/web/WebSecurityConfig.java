@@ -18,7 +18,10 @@ class WebSecurityConfig {
     @Bean
     @ConditionalOnMissingBean
     public UserDetailsService defaultUserDetailsService() {
-        return new InMemoryUserDetailsManager(User.withUsername("user").password("{noop}user").roles("USER").build());
+        return new InMemoryUserDetailsManager( // NOSONAR
+                User.withUsername("user").password("user").roles("USER").build(),
+                User.withUsername("dev").password("dev").roles("DEVELOPER").build(),
+                User.withUsername("other").password("other").roles("OTHER").build());
     }
 
     @Bean
