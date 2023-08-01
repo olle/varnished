@@ -1,11 +1,10 @@
-package example.varnished.infra.config;
-
-import example.varnished.web.Web;
+package example.varnished.web;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(basePackageClasses = Web.class)
+@ComponentScan
 public class WebConfig {
+    // OK
 }

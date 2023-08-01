@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 class GreetingsTest {
 
     @Test
@@ -20,7 +19,6 @@ class GreetingsTest {
         assertThat(sut.fetch()).isEqualTo("there, you");
         assertThat(sut.fetch()).isEqualTo("there, again");
     }
-
 
     @Test
     void ensureReVisitGreetingForSameUser() {

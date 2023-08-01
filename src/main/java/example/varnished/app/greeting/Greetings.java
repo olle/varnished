@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Supplier;
 
-
 public class Greetings {
 
     protected Supplier<String> currentUserIdentifier = AuthUtils::getCurrentUserIdentifier;
@@ -15,7 +14,7 @@ public class Greetings {
 
     public String fetch() {
 
-        String userId = currentUserIdentifier.get();
+        var userId = currentUserIdentifier.get();
 
         if (known.contains(userId)) {
             return "there, again";

@@ -6,10 +6,14 @@ JAVA_HOME := $(shell /usr/libexec/java_home -v 11)
 start:
 	SPRING_PROFILES_ACTIVE=dev $(MVN) spring-boot:run
 
-.PHONY: test
-test:
+.PHONY: test verify v
+test t verify v:
 	$(MVN) clean verify
 
 .PHONY: image
 image:
 	$(MVN) spring-boot:build-image
+
+.PHONY: tidy
+tidy:
+	$(MVN) formatter:format

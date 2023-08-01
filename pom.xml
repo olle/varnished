@@ -1,126 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.7.0</version>
-    <relativePath />
-  </parent>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.1.2</version>
+		<relativePath />
+	</parent>
 
-  <groupId>com.studiomediatech.example</groupId>
-  <artifactId>varnished</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>Varnished</name>
-  <description>Triple varnished enterprise frobulator project</description>
+	<groupId>com.studiomediatech.example</groupId>
+	<artifactId>varnished</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Varnished</name>
+	<description>Triple varnished enterprise frobulator project</description>
 
-  <properties>
-    <java.version>11</java.version>
-  </properties>
+	<properties>
+		<java.version>17</java.version>
+	</properties>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-mustache</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-security</artifactId>
-    </dependency>
-<!--     <dependency> -->
-<!--       <groupId>org.springframework.boot</groupId> -->
-<!--       <artifactId>spring-boot-starter-actuator</artifactId> -->
-<!--     </dependency> -->
-<!--     <dependency> -->
-<!--       <groupId>org.springframework.boot</groupId> -->
-<!--       <artifactId>spring-boot-starter-validation</artifactId> -->
-<!--     </dependency> -->
-<!--     <dependency> -->
-<!--       <groupId>org.springframework.boot</groupId> -->
-<!--       <artifactId>spring-boot-starter-hateoas</artifactId> -->
-<!--     </dependency> -->
-<!--     <dependency> -->
-<!--       <groupId>org.springframework.boot</groupId> -->
-<!--       <artifactId>spring-boot-starter-data-jpa</artifactId> -->
-<!--     </dependency> -->
-<!--     <dependency> -->
-<!--       <groupId>org.mariadb.jdbc</groupId> -->
-<!--       <artifactId>mariadb-java-client</artifactId> -->
-<!--     </dependency> -->
-<!--     <dependency> -->
-<!--       <groupId>org.flywaydb</groupId> -->
-<!--       <artifactId>flyway-core</artifactId> -->
-<!--     </dependency> -->
-    <!-- Test Dependencies -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mustache</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<!--     <dependency> -->
+		<!--       <groupId>org.springframework.boot</groupId> -->
+		<!--       <artifactId>spring-boot-starter-actuator</artifactId> -->
+		<!--     </dependency> -->
+		<!--     <dependency> -->
+		<!--       <groupId>org.springframework.boot</groupId> -->
+		<!--       <artifactId>spring-boot-starter-validation</artifactId> -->
+		<!--     </dependency> -->
+		<!--     <dependency> -->
+		<!--       <groupId>org.springframework.boot</groupId> -->
+		<!--       <artifactId>spring-boot-starter-hateoas</artifactId> -->
+		<!--     </dependency> -->
+		<!--     <dependency> -->
+		<!--       <groupId>org.springframework.boot</groupId> -->
+		<!--       <artifactId>spring-boot-starter-data-jpa</artifactId> -->
+		<!--     </dependency> -->
+		<!--     <dependency> -->
+		<!--       <groupId>org.mariadb.jdbc</groupId> -->
+		<!--       <artifactId>mariadb-java-client</artifactId> -->
+		<!--     </dependency> -->
+		<!--     <dependency> -->
+		<!--       <groupId>org.flywaydb</groupId> -->
+		<!--       <artifactId>flyway-core</artifactId> -->
+		<!--     </dependency> -->
+		<!-- Test Dependencies -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <configuration>
-          <!--
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>net.revelc.code.formatter</groupId>
+				<artifactId>formatter-maven-plugin</artifactId>
+				<version>2.22.0</version>
+				<configuration>
+					<javaExclusionPattern>(@formatter:off([^@]*)@formatter:on)</javaExclusionPattern>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>format</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<!--
             # Help a guy out here! This way, we can use a proper terminal and
             # the Maven wrapper, or the Makefile, to get started but still
             # have the full glory of instant reload and editable templates or
             # resources - you'll want this. Trust me. 
            -->
-          <addResources>true</addResources>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>build-info</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <artifactId>maven-failsafe-plugin</artifactId>
-        <executions>
-            <execution>
-                <goals>
-                    <goal>integration-test</goal>
-                    <goal>verify</goal>
-                </goals>
-            </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>pl.project13.maven</groupId>
-        <artifactId>git-commit-id-plugin</artifactId>
-        <configuration>
-          <useNativeGit>true</useNativeGit>
-          <gitDescribe>
-            <skip>true</skip>
-          </gitDescribe>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+					<addResources>true</addResources>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>build-info</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>pl.project13.maven</groupId>
+				<artifactId>git-commit-id-plugin</artifactId>
+				<configuration>
+					<useNativeGit>true</useNativeGit>
+					<gitDescribe>
+						<skip>true</skip>
+					</gitDescribe>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>
