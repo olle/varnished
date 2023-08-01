@@ -17,3 +17,7 @@ image:
 .PHONY: tidy
 tidy:
 	$(MVN) formatter:format
+
+.PHONY: up
+up:
+	docker-compose up -d
