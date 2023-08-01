@@ -18,6 +18,10 @@ image:
 tidy:
 	$(MVN) formatter:format
 
-.PHONY: up
+.PHONY: up down
 up:
 	docker-compose up -d
+
+down:
+	docker-compose down --remove-orphans
+
