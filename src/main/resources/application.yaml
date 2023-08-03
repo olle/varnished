@@ -1,0 +1,67 @@
+spring:
+  application:
+    name: varnished
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+  messages:
+    fallback-to-system-locale: false
+  mustache:
+    suffix: .mustache
+    expose-request-attributes: true
+    expose-session-attributes: true
+    expose-spring-macro-helpers: true
+management:
+  server:
+    port: 8081
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: info, health, metrics, prometheus, env, configprops, beans
+  endpoint:
+    health:
+      show-components: always
+      show-details: always
+      probes:
+        enabled: true
+  task:
+    scheduling:
+      size: 5 # (default 1)
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  mustache:
+    cache: false
+  web:
+    resources:
+      cache:
+        period: PT0S
+  messages:
+    cache-duration: PT0S
+---
+spring:
+  config:
+    activate:
+      on-profile: jdbc
+  datasource:
+    alpha:
+      url: jdbc:postgresql://localhost:5433/postgres
+      username: postgres
+      password: postgres
+      hikari:
+        pool-name: alpha-pool
+        auto-commit: false
+    omega:
+      url: jdbc:postgresql://localhost:5444/postgres
+      username: postgres
+      password: postgres
+      hikari:
+        pool-name: omega-pool
+        auto-commit: false

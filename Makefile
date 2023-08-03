@@ -1,10 +1,11 @@
 MVN_OPTS  := -Xms100m -Xmx200m
 MVN       ?= $(shell pwd)/mvnw
 JAVA_HOME := $(shell /usr/libexec/java_home -v 11)
+SPRING_PROFILES_ACTIVE ?= dev
 
 .PHONY: start
 start:
-	SPRING_PROFILES_ACTIVE=dev $(MVN) spring-boot:run
+	SPRING_PROFILES_ACTIVE=$(SPRING_PROFILES_ACTIVE) $(MVN) spring-boot:run
 
 .PHONY: test verify v
 test t verify v:
