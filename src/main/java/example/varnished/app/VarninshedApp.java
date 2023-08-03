@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import example.varnished.infra.repo.RepoConfig;
 import example.varnished.web.WebConfig;
@@ -16,6 +18,7 @@ import example.varnished.web.WebConfig;
  * container-setup and the production-services using profiles.
  */
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+@EnableScheduling
 public class VarninshedApp {
 
     public static void main(String[] args) throws Exception {
