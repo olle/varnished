@@ -13,7 +13,7 @@
 
 	<groupId>com.studiomediatech.example</groupId>
 	<artifactId>varnished</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>Varnished</name>
 	<description>Triple varnished enterprise frobulator project</description>
 
