@@ -6,8 +6,9 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 
+import example.varnished.api.messaging.MessagingConfig;
+import example.varnished.infra.event.EventConfig;
 import example.varnished.infra.repo.RepoConfig;
 import example.varnished.web.WebConfig;
 
@@ -26,7 +27,7 @@ public class VarninshedApp {
     }
 
     @Configuration
-    @Import({ WebConfig.class, RepoConfig.class })
+    @Import({ WebConfig.class, RepoConfig.class, MessagingConfig.class, EventConfig.class })
     public static class Bootstrap {
         // OK
     }
