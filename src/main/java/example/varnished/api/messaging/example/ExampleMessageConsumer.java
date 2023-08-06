@@ -1,4 +1,4 @@
-package example.varnished.api.messaging.test;
+package example.varnished.api.messaging.example;
 
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
