@@ -11,7 +11,7 @@ import org.springframework.scheduling.TaskScheduler;
 public class EventConfig {
 
     @Bean
-    public EventEmitter blockingEventEmitter(ApplicationEventPublisher publisher) {
+    public BlockingEventEmitter blockingEventEmitter(ApplicationEventPublisher publisher) {
         return publisher::publishEvent;
     }
 

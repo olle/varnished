@@ -1,8 +1,6 @@
 package example.varnished.infra.event;
 
 @FunctionalInterface
-public interface EventEmitter {
-
+interface EventEmitter {
     void emitEvent(Object event);
-
 }

@@ -8,8 +8,10 @@ import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import example.varnished.api.messaging.MessagingConfig;
+import example.varnished.infra.adapter.AdapterConfig;
 import example.varnished.infra.event.EventConfig;
 import example.varnished.infra.repo.RepoConfig;
+import example.varnished.infra.service.ServiceConfig;
 import example.varnished.web.WebConfig;
 
 /**
@@ -27,7 +29,9 @@ public class VarninshedApp {
     }
 
     @Configuration
-    @Import({ WebConfig.class, RepoConfig.class, MessagingConfig.class, EventConfig.class })
+    @Import({ // NOSONAR
+            WebConfig.class, RepoConfig.class, EventConfig.class, MessagingConfig.class, AdapterConfig.class,
+            ServiceConfig.class })
     public static class Bootstrap {
         // OK
     }
