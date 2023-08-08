@@ -2,7 +2,7 @@
 ## It does `docker-compose up -d` before starting the project, or else it gets
 ## the hose, again!
 ##
-version: '2.1'
+version: '3.2'
 services:
   'rabbitmq':
     image: rabbitmq:3-management

@@ -1,5 +1,9 @@
 package example.varnished.app;
 
+import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -13,6 +17,10 @@ import example.varnished.infra.event.EventConfig;
 import example.varnished.infra.repo.RepoConfig;
 import example.varnished.infra.service.ServiceConfig;
 import example.varnished.web.WebConfig;
+import io.minio.BucketExistsArgs;
+import io.minio.MakeBucketArgs;
+import io.minio.MinioClient;
+import io.minio.errors.MinioException;
 
 /**
  * The default profile, does not auto-configure JDBC, even though there are triggering assets on the classpath. This is
@@ -26,6 +34,28 @@ public class VarninshedApp {
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(VarninshedApp.class, args);
+
+        tryOutMinioClient();
+    }
+
+    private static void tryOutMinioClient() throws InvalidKeyException, IOException, NoSuchAlgorithmException {
+        try {
+            // Create a minioClient with the MinIO server playground, its access key and secret key.
+            MinioClient minioClient = MinioClient.builder().endpoint("http://localhost:9000")
+                    .credentials("minminio", "minminio").build();
+
+            // Make 'asiatrip' bucket if not exist.
+            boolean found = minioClient.bucketExists(BucketExistsArgs.builder().bucket("examplebucket").build());
+            if (!found) {
+                // Make a new bucket called 'asiatrip'.
+                minioClient.makeBucket(MakeBucketArgs.builder().bucket("examplebucket").build());
+            } else {
+                System.out.println("Bucket 'examplebucket' already exists.");
+            }
+        } catch (MinioException e) {
+            System.out.println("Error occurred: " + e);
+            System.out.println("HTTP trace: " + e.httpTrace());
+        }
     }
 
     @Configuration
