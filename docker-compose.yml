@@ -2,7 +2,7 @@
 ## It does `docker-compose up -d` before starting the project, or else it gets
 ## the hose, again!
 ##
-version: '3.2'
+version: '3.8'
 services:
   'rabbitmq':
     image: rabbitmq:3-management
@@ -11,6 +11,11 @@ services:
       - "15672:15672"
       ## username: guest
       ## password: guest
+  'redis':
+    image: redis:latest
+    command: redis-server
+    ports:
+      - 6379:6379
   'db-alpha':
     image: postgres:15
     restart: always

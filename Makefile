@@ -1,6 +1,6 @@
 MVN_OPTS  := -Xms100m -Xmx200m
 MVN       ?= $(shell pwd)/mvnw
-JAVA_HOME := $(shell /usr/libexec/java_home -v 17)
+JAVA_HOME := $(shell /usr/libexec/java_home -v 21)
 SPRING_PROFILES_ACTIVE ?= dev
 
 .PHONY: start
