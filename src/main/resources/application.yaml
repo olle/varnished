@@ -17,10 +17,6 @@ spring:
 management:
   server:
     port: 8081
-  metrics:
-    export:
-      prometheus:
-        enabled: true
   endpoints:
     web:
       exposure:
@@ -33,6 +29,10 @@ management:
       show-components: always
       show-details: always
       probes:
+        enabled: true
+  metrics:
+    export:
+      prometheus:
         enabled: true
   task:
     scheduling:
